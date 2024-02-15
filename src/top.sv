@@ -58,7 +58,7 @@ module SPI_Peripheral
           // Set the Data Out register to the selected value
           if ({data_reg[7:0]} == 8'b1000_1111) begin // If the data is 0x8F (10001111 in binary, the test data) then send 0xAA (10101010 in binary, the test response)
             //$display("Data is 0x8F, sending 0xAA");
-            data_out <= 8'b10101010;
+            data_reg <= 8'b10101010;
           end else begin // Otherwise, set data_out based on the data register
             // If data_reg[7] is 1, then set the data out based on data_reg[6:5]
             // If data_reg[7] is 0, then set the data out to 0
@@ -202,8 +202,6 @@ module my_design (
 );
    wire reset = ! rst_n;
 
-   wire [7:0] tmp = {7'b1};
-
    SPI_Peripheral spi (
    	.clk(clk),
       .rst_n(rst_n),
@@ -212,8 +210,8 @@ module my_design (
       .mosi(ui_in[3]),
       .miso(),
       .sclk(ui_in[0]),
-      .config_data(31'b0),
-      .recieved_data(tmp)
+      .config_data(32'b0),
+      .recieved_data(uo_out)
    );
 
 // ---------- Generated Code Inlined Here (before 1st \TLV) ----------
@@ -293,7 +291,7 @@ logic [6:0] L0_sseg_segment_n_a0;
 //_\TLV
    /* verilator lint_off UNOPTFLAT */
    // Connect Tiny Tapeout I/Os to Virtual FPGA Lab.
-   //_\source /raw.githubusercontent.com/osfpga/VirtualFPGALab/35e36bd144fddd75495d4cbc01c4fc50ac5bde6f/tlvlib/tinytapeoutlib.tlv 76   // Instantiated from top.tlv, 223 as: m5+tt_connections()
+   //_\source /raw.githubusercontent.com/osfpga/VirtualFPGALab/35e36bd144fddd75495d4cbc01c4fc50ac5bde6f/tlvlib/tinytapeoutlib.tlv 76   // Instantiated from top.tlv, 221 as: m5+tt_connections()
       assign L0_slideswitch_a0[7:0] = ui_in;
       assign L0_sseg_segment_n_a0[6:0] = ~ uo_out[6:0];
       assign L0_sseg_decimal_point_n_a0 = ~ uo_out[7];
@@ -301,7 +299,7 @@ logic [6:0] L0_sseg_segment_n_a0;
    //_\end_source
 
    // Instantiate the Virtual FPGA Lab.
-   //_\source /raw.githubusercontent.com/osfpga/VirtualFPGALab/a069f1e4e19adc829b53237b3e0b5d6763dc3194/tlvlib/fpgaincludes.tlv 307   // Instantiated from top.tlv, 226 as: m5+board(/top, /fpga, 7, $, , my_design)
+   //_\source /raw.githubusercontent.com/osfpga/VirtualFPGALab/a069f1e4e19adc829b53237b3e0b5d6763dc3194/tlvlib/fpgaincludes.tlv 307   // Instantiated from top.tlv, 224 as: m5+board(/top, /fpga, 7, $, , my_design)
       
       //_\source /raw.githubusercontent.com/osfpga/VirtualFPGALab/a069f1e4e19adc829b53237b3e0b5d6763dc3194/tlvlib/fpgaincludes.tlv 355   // Instantiated from /raw.githubusercontent.com/osfpga/VirtualFPGALab/a069f1e4e19adc829b53237b3e0b5d6763dc3194/tlvlib/fpgaincludes.tlv, 309 as: m4+thanks(m5__l(309)m5_eval(m5_get(BOARD_THANKS_ARGS)))
          //_/thanks
@@ -371,7 +369,7 @@ logic [6:0] L0_sseg_segment_n_a0;
       
    //_\end_source
    // Label the switch inputs [0..7] (1..8 on the physical switch panel) (top-to-bottom).
-   //_\source /raw.githubusercontent.com/osfpga/VirtualFPGALab/35e36bd144fddd75495d4cbc01c4fc50ac5bde6f/tlvlib/tinytapeoutlib.tlv 82   // Instantiated from top.tlv, 228 as: m5+tt_input_labels_viz(⌈"UNUSED", "UNUSED", "UNUSED", "UNUSED", "UNUSED", "UNUSED", "UNUSED", "UNUSED"⌉)
+   //_\source /raw.githubusercontent.com/osfpga/VirtualFPGALab/35e36bd144fddd75495d4cbc01c4fc50ac5bde6f/tlvlib/tinytapeoutlib.tlv 82   // Instantiated from top.tlv, 226 as: m5+tt_input_labels_viz(⌈"UNUSED", "UNUSED", "UNUSED", "UNUSED", "UNUSED", "UNUSED", "UNUSED", "UNUSED"⌉)
       for (input_label = 0; input_label <= 7; input_label++) begin : L1_InputLabel //_/input_label
          
       end
